@@ -1,0 +1,15 @@
+.form-row {
+    display: flex;
+    align-items: center; /* Aligns label and input vertically */
+    /* margin-bottom: 10px; Adds space between rows */
+}
+
+.form-row label {
+    /* width: 150px; Fixed width for labels */
+    /* margin-right: 10px; Space between label and input */
+    text-align: right; /* Aligns text to the right */
+}
+
+.form-row input {
+    flex: 1; /* Inputs take up remaining space */
+}

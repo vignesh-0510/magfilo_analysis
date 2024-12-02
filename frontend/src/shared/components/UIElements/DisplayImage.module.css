@@ -1,0 +1,27 @@
+.image-container {
+    position: 'relative';
+}
+
+.sun_image {
+    position: absolute;
+}
+
+.image-container svg {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 1024px;
+    height: 1024px;
+    pointer-events: "none";
+    z-index: 2;
+}
+.image-container svg polygon {
+    cursor: "pointer"; 
+    pointer-events: "all";
+    /* fill: rgba(0, 0, 255, 0.5); */
+    /* stroke: rgba(0, 0, 255, 0.7); */
+}
+
+/* .image-container svg polygon:hover {
+    /* fill: rgba(255, 0, 0, 0.5);  */
+    /* stroke: rgba(255, 0, 0, 0.7);  */
