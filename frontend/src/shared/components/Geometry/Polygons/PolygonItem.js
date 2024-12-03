@@ -54,9 +54,7 @@ const PolygonItem = (props) => {
 	return (
 		<polygon
 			className="polygon"
-			points={fetch_svg_polygon_string(
-				props.annot[props.geometry || "bbox"]
-			)}
+			points={fetch_svg_polygon_string(props.annot[props.geometry])}
 			fill={`${color_dict[props.annot.category]}`}
 			fillOpacity={isHovered ? "0.8" : "0.3"}
 			stroke={color_dict[props.annot.category]}

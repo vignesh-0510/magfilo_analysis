@@ -19,14 +19,11 @@ def get_line_list(line_string):
 def get_annotation_object(annot):
     return {
     'id': annot.id,
-    # 'segmentation': get_polygon_list(to_shape(annot.segmentation).wkt),
     'segmentation': to_shape(annot.segmentation).wkt,
     'area': float(annot.area),
     'iscrowd': annot.iscrowd,
     'image_id': annot.image_id,
-    # 'bbox': get_polygon_list(to_shape(annot.bbox).wkt),
     'bbox': to_shape(annot.bbox).wkt,
-    # 'spine':  get_line_list(to_shape(annot.spine).wkt),
     'spine':  to_shape(annot.spine).wkt,
     'category': annot.category,
     'date_captured': annot.date_captured,

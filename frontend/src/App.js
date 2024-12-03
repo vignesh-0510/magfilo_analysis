@@ -17,8 +17,11 @@ import AboutPage from "./pages/aboutpage";
 import Auth from "./users/pages/Auth";
 import Dashboard from "./pages/dashboard";
 import Footer from "./shared/components/Navigation/Footer";
-import Query from "./pages/specificDate";
-import AllDates from "./pages/allDates";
+import SpecificDate from "./pages/Queries/specificDate";
+import AllDates from "./pages/Queries/allDates";
+import FilterChirality from "./pages/Queries/filter";
+import Buffer from "./pages/Queries/buffer";
+import NotFoundPage from "./pages/notfoundpage";
 // import NotFoundPage from "./views/notfoundpage";
 
 const App = () => {
@@ -40,7 +43,17 @@ const App = () => {
 				<Route path="/" element={<HomePage />} exact="true" />
 				<Route path="/about" element={<AboutPage />} exact="true" />
 				<Route path="/dashboard" element={<Dashboard />} exact="true" />
-				<Route path="/query" element={<Query />} exact="true" />
+				<Route path="/query" element={<SpecificDate />} exact="true" />
+				<Route
+					path="/filter"
+					element={<FilterChirality />}
+					exact="true"
+				/>
+				<Route path="/buffer" element={<Buffer />} exact="true" />
+				<Route path="/area" element={<NotFoundPage />} exact="true" />
+				<Route path="/length" element={<NotFoundPage />} exact="true" />
+				<Route path="/change" element={<NotFoundPage />} exact="true" />
+				<Route path="/range" element={<NotFoundPage />} exact="true" />
 				<Route
 					path="/allannotations"
 					element={<AllDates />}

@@ -1,7 +1,6 @@
 import React from "react";
 
 import classes from "./aboutpage.module.css";
-import Footer from "../shared/components/Navigation/Footer";
 
 const AboutPage = () => {
 	return (
@@ -38,6 +37,7 @@ const AboutPage = () => {
 										<a
 											href="https://www.nature.com/articles/s41597-024-03876-y"
 											target="_blank"
+											rel="noreferrer"
 										>
 											Paper
 										</a>
@@ -46,6 +46,7 @@ const AboutPage = () => {
 										<a
 											href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/J6JNVK"
 											target="_blank"
+											rel="noreferrer"
 										>
 											Code
 										</a>

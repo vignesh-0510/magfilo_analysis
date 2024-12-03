@@ -1,6 +1,6 @@
 import React from "react";
 
-import classes from "./LinesList.module.css";
+// import classes from "./LinesList.module.css";
 import LineItem from "./LineItem";
 
 const LinesList = (props) => {

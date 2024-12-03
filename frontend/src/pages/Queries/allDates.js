@@ -1,9 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 
 import classes from "./allDates.module.css";
-import DisplayAnnotations from "../shared/components/UIElements/DisplayAnnotations";
-import SideMenu from "../dashboard/components/SideMenu";
-import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
+import DisplayAnnotations from "../../shared/components/UIElements/DisplayAnnotations";
+import SideMenu from "../../dashboard/components/SideMenu";
 const AllDates = () => {
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 	const inputGeometryRef = useRef();
@@ -17,7 +16,6 @@ const AllDates = () => {
 
 	useEffect(() => {
 		if (isFormSubmitted) {
-			console.log(inputGeometry);
 		}
 		setIsFormSubmitted(false);
 	}, [isFormSubmitted]);
@@ -40,12 +38,13 @@ const AllDates = () => {
 									name="geometry_type"
 									id="geometry_type"
 									ref={inputGeometryRef}
-									defaultValue="select geometry type"
 								>
 									<option value="segmentation">
 										Segmentation
 									</option>
-									<option value="bbox">Bounding Box</option>
+									<option value="bbox" selected>
+										Bounding Box
+									</option>
 									<option value="spine">Spine</option>
 								</select>
 							</div>

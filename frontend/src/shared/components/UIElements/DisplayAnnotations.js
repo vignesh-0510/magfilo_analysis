@@ -9,19 +9,28 @@ import classes from "./DisplayImage.module.css";
 const o_height = 2048;
 const o_width = 2048;
 
-// const url = `${process.env.REACT_APP_BACKEND_URL}/api/annotations`;
+const polygon_list = ["segmentation", "bbox", "spine"];
 const DisplayImage = (props) => {
 	const h_scale = (props.image.height ? props.image.height : 0.5) / o_height;
 	const w_scale = (props.image.width ? props.image.width : 0.5) / o_width;
 	const { isLoading, sendRequest } = useHttpClient();
 	const [annotations, setAnnotations] = useState([]);
-
+	const chirality = props.chirality || "";
+	const bufferDistance = props.buffer || "";
 	useEffect(() => {
-		const fetchData = async () => {
+		const fetchData = async (chirality, bufferDistance) => {
 			try {
-				const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/annotations/`;
+				let backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/annotations/`;
+				if (chirality !== "") {
+					backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/annotations/chirality/${chirality}`;
+				}
+				// if (bufferDistance !== "") {
+				// 	backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/annotations/buffer/${bufferDistance}`;
+				// }
 				const responseData = await sendRequest(backend_url, "GET");
 				const data = [];
+				console.log(responseData);
+
 				responseData.forEach((element) => {
 					data.push(element);
 				});
@@ -31,8 +40,8 @@ const DisplayImage = (props) => {
 			}
 		};
 
-		fetchData();
-	}, [sendRequest, props.image]);
+		fetchData(chirality, bufferDistance);
+	}, [sendRequest, props.image, chirality, bufferDistance]);
 
 	// Toggle selection state when the polygon is clicked
 	const handlePolygonClick = () => {
@@ -68,6 +77,32 @@ const DisplayImage = (props) => {
 									onClick={handlePolygonClick}
 								/>
 							)}
+							{/* {!props.buffer && props.geometry === "spine" && (
+								<LinesList
+									annotations={annotations}
+									geometry={"spine"}
+									scale={{ w_scale, h_scale }}
+									onClick={handlePolygonClick}
+								/>
+							)}
+							{!props.buffer &&
+								polygon_list.includes(props.geometry) && (
+									<PolygonsList
+										annotations={annotations}
+										geometry={props.geometry || "bbox"}
+										scale={{ w_scale, h_scale }}
+										onClick={handlePolygonClick}
+									/>
+								)}
+							{props.buffer && (
+								<PolygonsList
+									annotations={annotations}
+									geometry={props.geometry || "bbox"}
+									scale={{ w_scale, h_scale }}
+									onClick={handlePolygonClick}
+									buffer={props.buffer}
+								/>
+							)} */}
 						</svg>
 					</div>
 				)}

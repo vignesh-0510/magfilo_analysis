@@ -1,7 +1,6 @@
 import React from "react";
 
 import classes from "./homepage.module.css";
-import Footer from "../shared/components/Navigation/Footer";
 
 const HomePage = () => {
 	const features = [

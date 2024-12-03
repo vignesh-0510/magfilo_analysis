@@ -130,12 +130,30 @@ const SideMenu = () => {
 					</MenuItem>
 				</SubMenu>
 				<SubMenu label="Analyse Filaments">
-					<MenuItem> Filter</MenuItem>
-					<MenuItem> Area </MenuItem>
-					<MenuItem> Perimeter </MenuItem>
-					<MenuItem> Range </MenuItem>
-					<MenuItem> Buffer </MenuItem>
-					<MenuItem> Change </MenuItem>
+					<MenuItem component={<NavLink to="/filter" />}>
+						{" "}
+						Filter
+					</MenuItem>
+					<MenuItem component={<NavLink to="/area" />}>
+						{" "}
+						Area{" "}
+					</MenuItem>
+					<MenuItem component={<NavLink to="/length" />}>
+						{" "}
+						Length{" "}
+					</MenuItem>
+					<MenuItem component={<NavLink to="/range" />}>
+						{" "}
+						Range{" "}
+					</MenuItem>
+					<MenuItem component={<NavLink to="/buffer" />}>
+						{" "}
+						Buffer{" "}
+					</MenuItem>
+					<MenuItem component={<NavLink to="/change" />}>
+						{" "}
+						Change{" "}
+					</MenuItem>
 				</SubMenu>
 			</Menu>
 		</Sidebar>
