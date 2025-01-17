@@ -97,7 +97,6 @@ const SpecificDate = () => {
 							</button>
 						</div>
 					</form>
-
 					{isLoading && <LoadingSpinner />}
 					{!isLoading && imageData && (
 						<DisplayImage image={imageData} />

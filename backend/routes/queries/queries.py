@@ -65,7 +65,30 @@ def get_annotations_on_date_captured(date_captured):
 
 
 @queries_bp.route('/<annot_id>', methods=['GET'])
-# @jwt_required
+@jwt_required
 def get_one_annotation(annot_id):
     annot = Optimized_annotations.query.get(annot_id)
     return jsonify(get_annotation_object(annot))
+
+@queries_bp.route('/<annot_id>/info', methods=['GET'])
+def get_one_annotation_info(annot_id):
+    SQL_QUERY = f'''Select 
+	category,
+	ST_AREA(segmentation) area_segmentation, 
+	ST_AREA(bbox) area_bbox, 
+	ST_PERIMETER(segmentation) perimeter_segmentation, 
+	ST_LENGTH(spine) length_spine,
+	ST_AREA(segmentation)/ST_AREA(bbox) roundness_ratio,
+	ST_LENGTH(spine)/ST_LENGTH(ST_BoundingDiagonal(bbox)) curvyness_ratio,
+	(ST_XMax(bbox) - ST_XMin(bbox))/ (ST_YMax(bbox) - ST_YMin(bbox)) aspect_ratio
+from optimized.annotations
+where id = \'{annot_id}\''''
+    result = db.session.execute(text(SQL_QUERY))
+    keys = result.keys()
+    result = result.fetchone()
+    jsonData = {}
+    for k, attr in zip(keys, result):
+        jsonData[k] = attr
+
+    return jsonify({'data': jsonData})
+

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../UIElements/LoadingSpinner";
 import { useHttpClient } from "../../../shared/hooks/http-hook";
 import PolygonsList from "../Geometry/Polygons/PolygonsList";
-import LinesList from "../Geometry/Lines/LinesList";
 import classes from "./DisplayImage.module.css";
 
 const o_height = 2048;

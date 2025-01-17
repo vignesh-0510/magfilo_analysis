@@ -14,13 +14,13 @@ dashboard_bp = Blueprint('dashboard', __name__)
 @dashboard_bp.route('/fetch_hemisphere_statistics', methods=['GET'])
 # @jwt_required
 def fetch_hemishpere_statistics():
-    SQL_QUERY = """Select 'Northern Hemisphere' hemisphere , category, count(category) from (select id, category from optimized.annotations where ST_WITHIN(segmentation, 
+    SQL_QUERY = """Select 'Southern Hemisphere' hemisphere , category, count(category) from (select id, category from optimized.annotations where ST_WITHIN(segmentation, 
 	ST_SetSRID(
 		ST_MakeBox2D(
 		ST_Point(0, 1024), ST_Point(2048, 2048)
 		),33000)
 	)) group by category union
-Select 'Southern Hemisphere' hemisphere , category, count(category) from (select id, category from optimized.annotations where ST_WITHIN(segmentation, 
+Select 'Northern Hemisphere' hemisphere , category, count(category) from (select id, category from optimized.annotations where ST_WITHIN(segmentation, 
 	ST_SetSRID(
 		ST_MakeBox2D(
 		ST_Point(0, 0), ST_Point(2048, 1024)

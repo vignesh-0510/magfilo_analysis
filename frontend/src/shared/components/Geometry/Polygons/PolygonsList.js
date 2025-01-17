@@ -4,12 +4,6 @@ import React from "react";
 import PolygonItem from "./PolygonItem";
 
 const PolygonsList = (props) => {
-	const fetch_geometry = () => {
-		if (props.buffer === "") {
-			return props.geometry;
-		}
-		return `${props.geometry}_buffer`;
-	};
 	return (
 		<>
 			{props.annotations.map((polygon) => (
@@ -19,6 +13,7 @@ const PolygonsList = (props) => {
 					annot={polygon}
 					scale={props.scale}
 					geometry={props.geometry || "bbox"}
+					onPolygonClick={props.onPolygonClick}
 				/>
 			))}
 		</>

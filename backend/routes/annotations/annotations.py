@@ -52,6 +52,7 @@ def get_annotation_given_chirality(chirality):
     annotations = Optimized_annotations.query.filter(Optimized_annotations.category == chirality).all()
     return jsonify([get_annotation_object(annot) for annot in annotations])
 
+@jwt_required
 @annotations_bp.route('/buffer/<bufferDistance>', methods=['GET'])
 # @jwt_required
 def get_annotations_buffer(bufferDistance):
@@ -60,15 +61,14 @@ def get_annotations_buffer(bufferDistance):
     annotations = result.fetchall()
     return jsonify([get_annotation_buffer(annot) for annot in annotations])
 # 
+@jwt_required
 @annotations_bp.route('/date_captured/<date_captured>', methods=['GET'])
-# @jwt_required
 def get_annotation_on_date(date_captured):
     annot = Optimized_annotations.query.filter(Optimized_annotations.date_captured == date_captured).all()
     return jsonify(get_annotation_object(annot[0]))
 
-
+@jwt_required
 @annotations_bp.route('/<annot_id>', methods=['GET'])
-# @jwt_required
 def get_one_annotation(annot_id):
     annot = Optimized_annotations.query.get(annot_id)
     return jsonify(get_annotation_object(annot))

@@ -4,6 +4,7 @@ import LoadingSpinner from "../UIElements/LoadingSpinner";
 import { useHttpClient } from "../../../shared/hooks/http-hook";
 import PolygonsList from "../Geometry/Polygons/PolygonsList";
 import classes from "./DisplayImage.module.css";
+import DisplayOffcanvas from "./Offcanvas";
 
 const o_height = 2048;
 const o_width = 2048;
@@ -14,6 +15,8 @@ const DisplayImage = (props) => {
 	const w_scale = (props.image.width ? props.image.width : 0.5) / o_width;
 	const { isLoading, sendRequest } = useHttpClient();
 	const [annotations, setAnnotations] = useState([]);
+	const [toggleShowOffcanvas, setToggleShowOffcanvas] = useState(false);
+	const [clickedAnnotation, setClickedAnnotation] = useState(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -34,8 +37,12 @@ const DisplayImage = (props) => {
 	}, [sendRequest, props.image]);
 
 	// Toggle selection state when the polygon is clicked
-	const handlePolygonClick = () => {
-		console.log("clicked");
+	const handlePolygonClick = (annot_id) => {
+		setToggleShowOffcanvas((prevState) => !prevState);
+		setClickedAnnotation(annot_id);
+	};
+	const hideOffcampus = () => {
+		setToggleShowOffcanvas(false);
 	};
 	return (
 		<div className="container-fluid">
@@ -54,11 +61,17 @@ const DisplayImage = (props) => {
 							<PolygonsList
 								annotations={annotations}
 								scale={{ w_scale, h_scale }}
-								onClick={handlePolygonClick}
+								onPolygonClick={handlePolygonClick}
 							/>
 						</svg>
 					</div>
 				)}
+
+				<DisplayOffcanvas
+					show={toggleShowOffcanvas}
+					annotId={clickedAnnotation}
+					hideShowOffcampus={hideOffcampus}
+				/>
 			</div>
 		</div>
 	);
