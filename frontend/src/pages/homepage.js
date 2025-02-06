@@ -7,7 +7,7 @@ const HomePage = () => {
 		{
 			title: "Statistical Analysis",
 			description:
-				"Process high-resolution solar magnetograms and identify filaments in real time.",
+				"Process high-resolution solar magnetograms for identification and analysis of filaments",
 		},
 		{
 			title: "Interactive Visualizations",
@@ -17,12 +17,11 @@ const HomePage = () => {
 		{
 			title: "Spatial Data Analysis",
 			description:
-				"Leverage machine learning to predict filament formation and evolution.",
+				"Leverage Statistical methods to predict filament characteristics",
 		},
 		{
 			title: "Temporal Data Visualizations",
-			description:
-				"Leverage machine learning to predict filament formation and evolution.",
+			description: "Visualize and analyze filament evolution with time.",
 		},
 	];
 	return (

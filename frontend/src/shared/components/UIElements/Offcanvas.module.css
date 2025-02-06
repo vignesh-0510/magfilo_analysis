@@ -1,0 +1,16 @@
+.infoList {
+    list-style: none;
+    padding: 0
+}
+
+.infoListItem{
+    line-height: 2rem;
+}
+
+.infoListItem__key {
+    font-weight: bold;
+}
+
+.infoListItem__value{
+    padding-left: 1rem;
+}

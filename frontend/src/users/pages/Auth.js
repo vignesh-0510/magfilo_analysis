@@ -35,7 +35,6 @@ const Auth = () => {
 		let responseData;
 		if (formState.isFormValid) {
 			try {
-				// console.log(`${process.env.REACT_APP_BACKEND_URL}/users/login`);
 				responseData = await sendRequest(
 					`${process.env.REACT_APP_BACKEND_URL}/users/login`,
 					"POST",
@@ -47,9 +46,10 @@ const Auth = () => {
 						password: formState.inputs.password.value,
 					})
 				);
-				console.log(responseData);
-				authCtx.login(responseData.userId, responseData.token);
-				navigate("/dashboard");
+				if (!error) {
+					authCtx.login(responseData.userId, responseData.token);
+					navigate("/dashboard");
+				}
 			} catch (err) {
 				console.log(err.message);
 				return;
@@ -62,38 +62,40 @@ const Auth = () => {
 	return (
 		<>
 			{error && <ErrorModal onClear={clearError} error={error} />}
-			<Card className={classes.authentication}>
-				{isLoading && <LoadingSpinner asOverlay />}
+			<div className={`container-fluid ${classes["card-container"]}`}>
+				<Card className={classes.authentication}>
+					{isLoading && <LoadingSpinner asOverlay />}
 
-				<h2>Login Required</h2>
-				<hr />
-				<form
-					className={classes["place-for"]}
-					onSubmit={formSubmitHandler}
-				>
-					<Input
-						id="user"
-						element="input"
-						type="text"
-						label="DB Username:"
-						validators={[VALIDATOR_REQUIRE()]}
-						errorText="Please enter a valid user"
-						onInput={inputHandler}
-					/>
-					<Input
-						id="password"
-						element="input"
-						type="password"
-						label="Password:"
-						validators={[VALIDATOR_REQUIRE()]}
-						errorText="Please enter a valid password"
-						onInput={inputHandler}
-					/>
-					<Button type="submit" disabled={!formState.isFormValid}>
-						LOGIN
-					</Button>
-				</form>
-			</Card>
+					<h2>Login Required</h2>
+					<hr />
+					<form
+						className={classes["place-for"]}
+						onSubmit={formSubmitHandler}
+					>
+						<Input
+							id="user"
+							element="input"
+							type="text"
+							label="Username:"
+							validators={[VALIDATOR_REQUIRE()]}
+							errorText="Please enter a valid user"
+							onInput={inputHandler}
+						/>
+						<Input
+							id="password"
+							element="input"
+							type="password"
+							label="Password:"
+							validators={[VALIDATOR_REQUIRE()]}
+							errorText="Please enter a valid password"
+							onInput={inputHandler}
+						/>
+						<Button type="submit" disabled={!formState.isFormValid}>
+							LOGIN
+						</Button>
+					</form>
+				</Card>
+			</div>
 		</>
 	);
 };

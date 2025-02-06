@@ -41,7 +41,9 @@ const PolygonItem = (props) => {
 	};
 
 	const handlePolygonClick = () => {
-		return "ff";
+		if (props.onPolygonClick) {
+			props.onPolygonClick(props.id);
+		}
 	};
 
 	const handlePolygonHover = () => {
@@ -52,19 +54,28 @@ const PolygonItem = (props) => {
 		setIsHovered(false);
 	};
 	return (
-		<polygon
-			className="polygon"
-			points={fetch_svg_polygon_string(props.annot[props.geometry])}
-			fill={`${color_dict[props.annot.category]}`}
-			fillOpacity={isHovered ? "0.8" : "0.3"}
-			stroke={color_dict[props.annot.category]}
-			strokeOpacity={isHovered ? "0.8" : "0.3"}
-			strokeWidth="2"
-			strokeLinejoin="round"
-			onClick={handlePolygonClick}
-			onMouseOver={handlePolygonHover}
-			onMouseOut={handlePolygonOut}
-		/>
+		<a
+			href="#offcanvas"
+			role="button"
+			// aria-controls="offcanvasExample"
+			data-bs-toggle="offcanvas"
+			data-bs-target="#offcanvas"
+			// onClick={handlePolygonClick}
+		>
+			<polygon
+				className="polygon"
+				points={fetch_svg_polygon_string(props.annot[props.geometry])}
+				fill={`${color_dict[props.annot.category]}`}
+				fillOpacity={isHovered ? "0.8" : "0.3"}
+				stroke={color_dict[props.annot.category]}
+				strokeOpacity={isHovered ? "0.8" : "0.3"}
+				strokeWidth="2"
+				strokeLinejoin="round"
+				onMouseOver={handlePolygonHover}
+				onMouseOut={handlePolygonOut}
+				onClick={handlePolygonClick}
+			/>
+		</a>
 	);
 };
 

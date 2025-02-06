@@ -120,7 +120,7 @@ const SideMenu = () => {
 					</span>
 					DashBoard
 				</MenuItem>
-				<MenuItem component={<NavLink to="/query" />}>Queries</MenuItem>
+				{/* <MenuItem component={<NavLink to="/query" />}>Queries</MenuItem> */}
 				<SubMenu label="View Data">
 					<MenuItem component={<NavLink to="/allannotations" />}>
 						All Data
